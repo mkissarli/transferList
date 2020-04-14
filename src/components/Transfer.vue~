@@ -1,0 +1,30 @@
+<template>
+</template>
+
+<script>
+export default {
+  name: "Transfer",
+  props: {
+    leftList: [],
+    rightList: []
+  },
+  computed: {
+    
+  },
+  methods: {
+    moveItemRight(item){
+      this.leftList.remove(item);
+      this.rightList.append(item);
+    },
+    moveItemLeft(item){
+      this.rightList.remove(item);
+      this.leftList.append(item);
+    }
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>
