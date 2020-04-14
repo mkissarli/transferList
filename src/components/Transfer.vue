@@ -16,19 +16,23 @@ export default {
   name: "Transfer",
   data: () => ({
     leftList: ["1","2","3"],
-    rightList: []
+    rightList: ["4"]
   }),
   computed: {
     
   },
   methods: {
     moveItemRight(e){
-      var item = e.currentTarget.textContents;
+      console.log(e.currentTarget);
+      var item = e.currentTarget.textContent;
+      console.log(this.leftList);
+      console.log(item);
       this.leftList.splice(this.leftList.indexOf(item), 1);
       this.rightList.push(item);
+      console.log(this.rightList);
     },
     moveItemLeft(e){
-      var item = e.currentTarget.textContents;
+      var item = e.currentTarget.textContent;
       this.rightList.splice(this.rightList.indexOf(item),1);
       this.leftList.push(item);
     }
