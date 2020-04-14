@@ -1,10 +1,12 @@
 <template>
   <div>
+    <h3> LIST 1 </h3>
     <ul>
-      <li v-for="i in leftList" v-bind:key=i @click:"moveItemLeft(i)">
+      <li v-for="i in leftList" v-bind:key=i v-on:click="moveItemRight($event)">{{ i }}</li>
     </ul>
+    <h3> LIST 2 </h3>
     <ul>
-      <li v-for="i in rightList" v-bind:key=i @click:"moveItemLeft(i)">
+      <li v-for="i in rightList" v-bind:key=i v-on:click="moveItemLeft($event)">{{ i }}</li>
     </ul>
   </div>
 </template>
@@ -12,21 +14,23 @@
 <script>
 export default {
   name: "Transfer",
-  props: {
+  data: () => ({
     leftList: ["1","2","3"],
-    rightList: ["4","5","6","7"]
-  },
+    rightList: []
+  }),
   computed: {
     
   },
   methods: {
-    moveItemRight(item){
-      this.leftList.remove(item);
-      this.rightList.append(item);
+    moveItemRight(e){
+      var item = e.currentTarget.textContents;
+      this.leftList.splice(this.leftList.indexOf(item), 1);
+      this.rightList.push(item);
     },
-    moveItemLeft(item){
-      this.rightList.remove(item);
-      this.leftList.append(item);
+    moveItemLeft(e){
+      var item = e.currentTarget.textContents;
+      this.rightList.splice(this.rightList.indexOf(item),1);
+      this.leftList.push(item);
     }
   }
 };
